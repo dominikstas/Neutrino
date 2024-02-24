@@ -4,6 +4,6 @@ project(Neutrino)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(neutrino Terminal/terminal.cpp Terminal/commands.cpp)
+add_executable(Neutrino Terminal/terminal.cpp Terminal/commands.cpp)
 
 
