@@ -20,9 +20,8 @@ void execute(const char *command) {
     } else if (strncmp(command, "start ", 5) == 0) {
         const char *setName = command + 6;
         start(setName);
-    } else if (strncmp(command, "add ", 3) == 0) {
-        const char *setName = command + 4;
-        add(setName);
+    } else if (strcmp(command, "add") == 0) {
+        add();
     } else {
         std::cout << "Unknown command: " << command << std::endl;
     }
@@ -42,7 +41,7 @@ void help() {
     std::cout << "All commands:" << std::endl;
     std::cout << "help - show all commands" << std::endl;
     std::cout << "start [set] - run one of existing sets" << std::endl;
-    std::cout << "add [set] - add new set" << std::endl;
+    std::cout << "add - add new set" << std::endl;
     std::cout << "exit - turn off Neutrino" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 }
@@ -56,16 +55,8 @@ void start(const std::string& setName) {
     }
 }
 
-void add(const std::string& setName) {
-    //to do: check if set is already existing
-    if (!setName.empty()) {
-        std::string scriptPath = "../sets.py"; 
-        std::string command = "python " + std::filesystem::absolute(scriptPath).string() + " " + setName;
+void add() {
+        std::string scriptPath = "../Sets/sets.py"; 
+        std::string command = "python " + std::filesystem::absolute(scriptPath).string();
         int result = system(command.c_str());
-
-        if (result == 1) {
-            std::cerr << "Error" << std::endl;
-        }
-    } else {
-        std::cerr << "Usage: add [set]" << std::endl;
-    }}
+    }
