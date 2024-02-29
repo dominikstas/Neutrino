@@ -5,7 +5,7 @@
 
 void execute(const char *command);
 void echo(const char *text);
-void exitS();
+void exitNeutrino();
 void help();
 void start(const std::string& setName);
 void add();

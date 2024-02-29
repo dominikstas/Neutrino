@@ -14,7 +14,7 @@ void execute(const char *command) {
             std::cout << "Usage: echo [text]" << std::endl;
         }
     } else if (strcmp(command, "exit") == 0) {
-        exitS();
+        exitNeutrino();
     } else if (strcmp(command, "help") == 0) {
         help();
     } else if (strncmp(command, "start ", 5) == 0) {
@@ -29,11 +29,12 @@ void execute(const char *command) {
     }
 }
 
+//that's kinda easter egg
 void echo(const char *text) {
     std::cout << text << std::endl;
 }
 
-void exitS() {
+void exitNeutrino() {
     std::cout << "Thanks for using" << std::endl;
     std::exit(0);
 }
@@ -44,6 +45,7 @@ void help() {
     std::cout << "help - show all commands" << std::endl;
     std::cout << "start [set] - run one of existing sets" << std::endl;
     std::cout << "add - add new set" << std::endl;
+    std::cout << "ls - show all created sets" << std::endl;
     std::cout << "exit - turn off Neutrino" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 }
@@ -65,12 +67,16 @@ void add() {
 
 void showSets() {
     const std::string setsFolder = "../Sets";
-    
-    // Iteruj przez wszystkie pliki w katalogu "Sets"
+
+    // Counter for numbering sets
+    int setNumber = 1;
+
     for (const auto& entry : std::filesystem::directory_iterator(setsFolder)) {
+        // Check if it's a regular file with the ".db" extension
         if (std::filesystem::is_regular_file(entry) && entry.path().extension() == ".db") {
-            // Wyświetl nazwę pliku (bez rozszerzenia) jako set
-            std::cout << "Set: " << entry.path().stem().string() << std::endl;
+            // Display name without extension
+            std::cout << "Set " << setNumber << ": " << entry.path().stem().string() << std::endl;
+            setNumber++;
         }
     }
 }

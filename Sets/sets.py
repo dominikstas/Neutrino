@@ -1,6 +1,8 @@
 import sqlite3
 import os
 
+#set = database
+
 def create_database(database_name):
     # Check if a database with the given name already exists
     if os.path.exists(f"../Sets/{database_name}.db"):
@@ -10,7 +12,7 @@ def create_database(database_name):
     connection = sqlite3.connect(f"../Sets/{database_name}.db")
     cursor = connection.cursor()
     
-    # Add an example table
+    # Add an table
     cursor.execute('''CREATE TABLE IF NOT EXISTS uno (
                         id INTEGER PRIMARY KEY,
                         name TEXT NOT NULL,
@@ -23,9 +25,9 @@ def create_database(database_name):
 
 if __name__ == "__main__":
     try:
-        # Ask the user for the name of the new database
-        database_name = input("Enter the name of the new database: ")
+        # Ask the user for the name of the new set
+        database_name = input("Enter the name of the new learning set: ")
         create_database(database_name)
-        print(f"Database '{database_name}' created successfully.")
+        print(f"'{database_name}' created successfully.")
     except Exception as e:
         print(f"Error: {e}")
