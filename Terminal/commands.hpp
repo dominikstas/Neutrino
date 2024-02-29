@@ -9,5 +9,6 @@ void exitS();
 void help();
 void start(const std::string& setName);
 void add();
+void showSets();
 
 #endif

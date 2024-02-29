@@ -22,6 +22,8 @@ void execute(const char *command) {
         start(setName);
     } else if (strcmp(command, "add") == 0) {
         add();
+    } else if (strcmp(command, "ls") == 0) {
+        showSets();
     } else {
         std::cout << "Unknown command: " << command << std::endl;
     }
@@ -60,3 +62,15 @@ void add() {
         std::string command = "python " + std::filesystem::absolute(scriptPath).string();
         int result = system(command.c_str());
     }
+
+void showSets() {
+    const std::string setsFolder = "../Sets";
+    
+    // Iteruj przez wszystkie pliki w katalogu "Sets"
+    for (const auto& entry : std::filesystem::directory_iterator(setsFolder)) {
+        if (std::filesystem::is_regular_file(entry) && entry.path().extension() == ".db") {
+            // Wyświetl nazwę pliku (bez rozszerzenia) jako set
+            std::cout << "Set: " << entry.path().stem().string() << std::endl;
+        }
+    }
+}
