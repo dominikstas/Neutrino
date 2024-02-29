@@ -10,5 +10,6 @@ void help();
 void start(const std::string& setName);
 void add();
 void showSets();
+void deleteSet(const std::string& setName);
 
 #endif
