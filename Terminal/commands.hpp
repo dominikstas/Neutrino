@@ -9,6 +9,7 @@ void exitNeutrino();
 void help();
 void start(const std::string& setName);
 void add();
+void edit();
 void showSets();
 void deleteSet(const std::string& setName);
 

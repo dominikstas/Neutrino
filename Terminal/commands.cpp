@@ -22,6 +22,8 @@ void execute(const char *command) {
         start(setName);
     } else if (strcmp(command, "add") == 0) {
         add();
+    } else if (strcmp(command, "edit") == 0) {
+        edit();
     } else if (strcmp(command, "ls") == 0) {
         showSets();
     } else if (strncmp(command, "delete ", 6) == 0) {
@@ -52,6 +54,7 @@ void help() {
     std::cout << "help - show all commands" << std::endl;
     std::cout << "start [set] - run one of existing sets" << std::endl;
     std::cout << "add - add new set" << std::endl;
+    std::cout << "edit - edit set" << std::endl;
     std::cout << "delete [set] - delete the set" << std::endl;
     std::cout << "ls - show all created sets" << std::endl;
     std::cout << "exit - turn off Neutrino" << std::endl;
@@ -72,6 +75,12 @@ void add() {
         std::string command = "python " + std::filesystem::absolute(scriptPath).string();
         int result = system(command.c_str());
     }
+
+void edit() {
+        std::string scriptPath = "../Sets/edit.py"; 
+        std::string command = "python " + std::filesystem::absolute(scriptPath).string();
+        int result = system(command.c_str());
+}
 
 void showSets() {
     const std::string setsFolder = "../Sets";
