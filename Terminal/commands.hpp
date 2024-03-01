@@ -10,6 +10,7 @@ void help();
 void start(const std::string& setName);
 void add();
 void edit();
+void lsSet();
 void showSets();
 void deleteSet(const std::string& setName);
 

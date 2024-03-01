@@ -26,7 +26,12 @@ void execute(const char *command) {
         edit();
     } else if (strcmp(command, "ls") == 0) {
         showSets();
-    } else if (strncmp(command, "delete ", 6) == 0) {
+    } else if (strcmp(command, "set") == 0) {
+        lsSet();
+    } 
+    
+    /* to do: separate this*/
+    else if (strncmp(command, "delete ", 6) == 0) {
         const char *setName = command + 7;
         if (strlen(setName) > 0) {
             deleteSet(setName);
@@ -49,12 +54,14 @@ void exitNeutrino() {
 }
 
 void help() {
+    //to do: better organize this
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "All commands:" << std::endl;
     std::cout << "help - show all commands" << std::endl;
     std::cout << "start [set] - run one of existing sets" << std::endl;
     std::cout << "add - add new set" << std::endl;
     std::cout << "edit - edit set" << std::endl;
+    std::cout << "set - display content of set" << std::endl;
     std::cout << "delete [set] - delete the set" << std::endl;
     std::cout << "ls - show all created sets" << std::endl;
     std::cout << "exit - turn off Neutrino" << std::endl;
@@ -78,6 +85,12 @@ void add() {
 
 void edit() {
         std::string scriptPath = "../Sets/edit.py"; 
+        std::string command = "python " + std::filesystem::absolute(scriptPath).string();
+        int result = system(command.c_str());
+}
+
+void lsSet() {
+        std::string scriptPath = "../Sets/ls.py"; 
         std::string command = "python " + std::filesystem::absolute(scriptPath).string();
         int result = system(command.c_str());
 }
