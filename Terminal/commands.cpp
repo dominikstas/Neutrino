@@ -2,8 +2,9 @@
 #include <cstdlib>
 #include <cstring>
 #include <filesystem>
-#include "commands.hpp"
 
+#include "commands.hpp"
+#include "learningModes.hpp"
 
 void execute(const char *command) {
     if (strncmp(command, "echo ", 4) == 0) {
@@ -17,9 +18,11 @@ void execute(const char *command) {
         exitNeutrino();
     } else if (strcmp(command, "help") == 0) {
         help();
-    } else if (strncmp(command, "start ", 5) == 0) {
-        const char *setName = command + 6;
-        start(setName);
+    } else if (strcmp(command, "start") == 0) { 
+        std::string setName;
+        std::cout << "Enter the name of the set you want to start learning: ";
+        std::getline(std::cin, setName);
+        startLearningMode(setName);
     } else if (strcmp(command, "add") == 0) {
         add();
     } else if (strcmp(command, "add-cards") == 0) {
@@ -66,15 +69,6 @@ void help() {
     std::cout << "ls - show all created sets" << std::endl;
     std::cout << "exit - turn off Neutrino" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
-}
-
-void start(const std::string& setName) {
-    if (!setName.empty()) {
-        std::cout << "Starting set: " << setName << std::endl;
-        //to do
-    } else {
-        std::cerr << "Usage: start [set]" << std::endl;
-    }
 }
 
 void add() {

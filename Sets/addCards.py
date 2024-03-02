@@ -1,8 +1,6 @@
 import sqlite3
 import os
-import sys
 
-#to do: cls
 
 def add_flashcard(database_name):
     # Check if the database exists

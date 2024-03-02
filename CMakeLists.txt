@@ -4,6 +4,6 @@ project(Neutrino)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Neutrino Terminal/terminal.cpp Terminal/commands.cpp)
+add_executable(Neutrino Terminal/terminal.cpp Terminal/commands.cpp Terminal/learningModes.cpp)
 
 target_compile_features(Neutrino PRIVATE cxx_std_17)

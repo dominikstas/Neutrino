@@ -1,8 +1,6 @@
 import os
 import sqlite3
 
-#to do: add cls
-
 def display_set(set_name):
     sets_folder = "../Sets"
     set_path = os.path.join(sets_folder, f"{set_name}.db")
