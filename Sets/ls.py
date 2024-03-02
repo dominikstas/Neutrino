@@ -30,6 +30,7 @@ def display_set(set_name):
     else:
         print(f"Error: Set '{set_name}' not found.")
 
-# Test
-set_name = input("Enter the name of the set you want to display: ")
-display_set(set_name)
+if __name__ == "__main__":
+    os.system('clear' if os.name == 'posix' else 'cls')
+    set_name = input("Enter the name of the set you want to display: ")
+    display_set(set_name)
