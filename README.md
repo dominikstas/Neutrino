@@ -9,8 +9,6 @@ Neutrino is a command-line tool designed to help (me) with (my) studies. It prov
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Learning Modes](#learning-modes)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
