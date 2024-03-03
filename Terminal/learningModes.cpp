@@ -1,4 +1,5 @@
 #include <iostream>
+#include <filesystem>
 
 #include "learningModes.hpp"
 
@@ -6,19 +7,25 @@
 void flashcardsMode(const std::string& setName) {
     system("clear"); 
     std::cout << "Welcome to Flashcards Mode!" << std::endl;
-    // Add flashcards mode logic here
+    std::string scriptPath = "../Modes/flashcards.py"; 
+    std::string command = "python " + std::filesystem::absolute(scriptPath).string() + " " + setName;
+    int result = system(command.c_str());
 }
 
 void examMode(const std::string& setName) {
     system("clear"); 
-    std::cout << "Welcome to Exam Mode for set!" << std::endl;
-    // Add exam mode logic here
+    std::cout << "Welcome to Exam Mode!" << std::endl;
+    std::string scriptPath = "../Modes/exam.py"; 
+    std::string command = "python " + std::filesystem::absolute(scriptPath).string() + " " + setName;
+    int result = system(command.c_str());
 }
 
 void quizMode(const std::string& setName) {
     system("clear"); 
-    std::cout << "Welcome to Quiz Mode for set!" << std::endl;
-    // Add quiz mode logic here
+    std::cout << "Welcome to Quiz Mode!" << std::endl;
+    std::string scriptPath = "../Modes/quiz.py"; 
+    std::string command = "python " + std::filesystem::absolute(scriptPath).string() + " " + setName;
+    int result = system(command.c_str());
 }
 
 void startLearningMode(const std::string& setName) {
