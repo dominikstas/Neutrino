@@ -8,4 +8,4 @@ void flashcardsMode(const std::string& setName);
 void examMode(const std::string& setName);
 void quizMode(const std::string& setName);
 
-#endif // LEARNING_MODES_HPP
+#endif

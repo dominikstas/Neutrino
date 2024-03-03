@@ -32,8 +32,6 @@ void execute(const char *command) {
     } else if (strcmp(command, "set") == 0) {
         lsSet();
     } 
-    
-    /* to do: separate this*/
     else if (strncmp(command, "delete ", 6) == 0) {
         const char *setName = command + 7;
         if (strlen(setName) > 0) {
@@ -57,17 +55,17 @@ void exitNeutrino() {
 }
 
 void help() {
-    //to do: better organize this
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "All commands:" << std::endl;
     std::cout << "help - show all commands" << std::endl;
+    std::cout << "exit - turn off Neutrino" << std::endl;
+    std::cout << "**************** Sets ********************" << std::endl;
     std::cout << "start [set] - run one of existing sets" << std::endl;
+    std::cout << "ls - show all created sets" << std::endl;
     std::cout << "add - add new set" << std::endl;
     std::cout << "add-cards - add flashcards to set" << std::endl;
     std::cout << "set - display content of set" << std::endl;
     std::cout << "delete [set] - delete the set" << std::endl;
-    std::cout << "ls - show all created sets" << std::endl;
-    std::cout << "exit - turn off Neutrino" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 }
 
