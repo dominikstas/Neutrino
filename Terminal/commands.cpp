@@ -19,6 +19,7 @@ void execute(const char *command) {
     } else if (strcmp(command, "help") == 0) {
         help();
     } else if (strcmp(command, "start") == 0) { 
+        //to do: this takes argument but doesnt need it
         std::string setName;
         std::cout << "Enter the name of the set you want to start learning: ";
         std::getline(std::cin, setName);
@@ -60,7 +61,7 @@ void help() {
     std::cout << "help - show all commands" << std::endl;
     std::cout << "exit - turn off Neutrino" << std::endl;
     std::cout << "**************** Sets ********************" << std::endl;
-    std::cout << "start [set] - run one of existing sets" << std::endl;
+    std::cout << "start - run one of existing sets" << std::endl;
     std::cout << "ls - show all created sets" << std::endl;
     std::cout << "add - add new set" << std::endl;
     std::cout << "add-cards - add flashcards to set" << std::endl;
