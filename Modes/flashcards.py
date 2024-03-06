@@ -4,7 +4,7 @@ import random
 import time
 import os
 
-#to do: finish this
+#to do: fix rounds
 
 def clear_terminal():
     os.system('clear' if os.name == 'posix' else 'cls')
@@ -16,8 +16,10 @@ def display_flashcard(card):
 def display_definition(card):
     # Display the definition on the screen
     print(f"Definition: {card[2]}")
-    user_input = input("Enter 'y' if you know the answer, 'n' otherwise: ")
-    return user_input.lower()
+
+def get_user_input():
+    # Wait for the user to press Enter
+    input("Press Enter to continue...")
 
 def evaluate_answer(correct, user_answer):
     # Evaluate the user's answer
@@ -52,14 +54,18 @@ def main():
 
         # Display the flashcard
         display_flashcard(current_flashcard)
-        input()
+
+        # Wait for the user to press Enter
+        get_user_input()
 
         # Display the definition
         display_definition(current_flashcard)
 
+        # Get user input for the answer
+        user_answer = input("Enter 'y' if you know the answer, 'n' otherwise: ")
+
         # Evaluate the user's answer
-        user_answer = display_flashcard(current_flashcard)
-        correct_answer = evaluate_answer(True, user_answer)  # Assume the correct answer is 'y'
+        correct_answer = evaluate_answer(True, user_answer.lower())  # Assume the correct answer is 'y'
 
         # Update statistics
         if not correct_answer:
