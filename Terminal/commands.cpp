@@ -19,7 +19,6 @@ void execute(const char *command) {
     } else if (strcmp(command, "help") == 0) {
         help();
     } else if (strcmp(command, "start") == 0) { 
-        //to do: this takes argument but doesnt need it
         std::string setName;
         std::cout << "Enter the name of the set you want to start learning: ";
         std::getline(std::cin, setName);
