@@ -32,8 +32,8 @@ void startLearningMode(const std::string& setName) {
     system("clear"); 
     std::cout << "Choose a learning mode:" << std::endl;
     std::cout << "1. Flashcards Mode" << std::endl;
-    std::cout << "2. Exam Mode" << std::endl;
-    std::cout << "3. Quiz Mode" << std::endl;
+    std::cout << "2. Exam Mode [soon]" << std::endl;
+    std::cout << "3. Quiz Mode [soon]" << std::endl;
 
     char choice;
     std::cin >> choice;

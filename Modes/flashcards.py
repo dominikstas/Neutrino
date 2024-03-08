@@ -4,8 +4,6 @@ import random
 import time
 import os
 
-#to do: fix rounds
-
 def clear_terminal():
     os.system('clear' if os.name == 'posix' else 'cls')
 
@@ -38,7 +36,10 @@ def main():
 
     # Fetch all flashcards from the database
     cursor.execute("SELECT * FROM uno")
-    flashcards = cursor.fetchall()
+    all_flashcards = cursor.fetchall()
+
+    # Initialize stack with all flashcards
+    flashcard_stack = list(all_flashcards)
 
     # Clear the terminal
     clear_terminal()
@@ -48,44 +49,62 @@ def main():
     rounds = 0
     start_time = time.time()
 
-    while flashcards:
-        # Choose a random flashcard
-        current_flashcard = random.choice(flashcards)
+    # Display initial message
+    print("Welcome to Flashcards Mode!")
 
-        # Display the flashcard
-        display_flashcard(current_flashcard)
-
-        # Wait for the user to press Enter
-        get_user_input()
-
-        # Display the definition
-        display_definition(current_flashcard)
-
-        # Get user input for the answer
-        user_answer = input("Enter 'y' if you know the answer, 'n' otherwise: ")
-
-        # Evaluate the user's answer
-        correct_answer = evaluate_answer(True, user_answer.lower())  # Assume the correct answer is 'y'
-
-        # Update statistics
-        if not correct_answer:
-            incorrect_answers.append(current_flashcard)
-
-        # Remove the used flashcard
-        flashcards.remove(current_flashcard)
-
+    while flashcard_stack:
         # Increment the number of rounds
         rounds += 1
+
+        # Display statistics at the beginning of each round
+        print(f"\nRound {rounds}\n")
+
+        # Shuffle the flashcards for each round
+        random.shuffle(flashcard_stack)
+
+        # Iterate through the flashcards in the current round
+        for current_flashcard in flashcard_stack:
+            # Display the flashcard
+            display_flashcard(current_flashcard)
+
+            # Wait for the user to press Enter
+            get_user_input()
+
+            # Display the definition
+            display_definition(current_flashcard)
+
+            # Get user input for the answer
+            user_answer = input("Enter 'y' if you know the answer, 'n' otherwise: ")
+
+            # Evaluate the user's answer
+            correct_answer = evaluate_answer(True, user_answer.lower())  # Assume the correct answer is 'y'
+
+            # Update statistics
+            if not correct_answer:
+                incorrect_answers.append(current_flashcard)
+
+        # Display statistics at the end of each round
+        print(f"\nEnd of Round {rounds} Summary:")
+        print(f"Session Duration: {time.time() - start_time:.2f} seconds")
+        print(f"Number of Incorrect Answers: {len(incorrect_answers)}\n")
+
+        # Clear the stack for the next round
+        flashcard_stack.clear()
+
+        # Refill the stack with incorrect flashcards
+        flashcard_stack.extend(incorrect_answers)
+
+        # Clear the list of incorrect answers
+        incorrect_answers.clear()
 
     # Calculate the session duration
     end_time = time.time()
     session_duration = end_time - start_time
 
-    # Display statistics
+    # Display final statistics
     print(f"\nSession Summary:")
     print(f"Number of Rounds: {rounds}")
-    print(f"Session Duration: {session_duration:.2f} seconds")
-    print(f"Number of Incorrect Answers: {len(incorrect_answers)}")
+    print(f"Session Duration: {session_duration:.2f} seconds\n")
 
     # Close the connection to the database
     connection.close()
