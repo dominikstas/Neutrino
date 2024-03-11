@@ -13,5 +13,6 @@ void addCards();
 void lsSet();
 void showSets();
 void deleteSet(const std::string& setName);
+void changeName();
 
 #endif
