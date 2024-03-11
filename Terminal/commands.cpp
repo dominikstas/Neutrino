@@ -111,13 +111,22 @@ void deleteSet(const std::string& setName) {
 
     // Check if the set file exists
     if (std::filesystem::exists(setPath)) {
-        std::filesystem::remove(setPath);
-        std::cout << "Set '" << setName << "' has been deleted." << std::endl;
+        std::string confirmation;
+        
+        //confirmation before deleting
+        std::cout << "Are you sure you want to delete the set '" << setName << "'? (Type the set name to confirm): ";
+        std::getline(std::cin, confirmation);
+
+        if (confirmation == setName) {
+            std::filesystem::remove(setPath);
+            std::cout << "Set '" << setName << "' has been deleted." << std::endl;
+        } else {
+            std::cerr << "Deletion canceled. Set name did not match." << std::endl;
+        }
     } else {
         std::cerr << "Error: Set '" << setName << "' not found." << std::endl;
     }
 }
-
 void changeName() {
     std::string oldSetName;
     std::cout << "Enter the name of the set you want to change: ";
